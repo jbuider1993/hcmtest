@@ -9,7 +9,7 @@ env:
     - SHA=$(git rev-parse HEAD)
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 script:
-- mvnw clean install
+- mvn clean install
 after_success:
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
 - docker build -f Dockerfile -t hcm-service:$SHA .
