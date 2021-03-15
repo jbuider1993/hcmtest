@@ -2,3 +2,19 @@ sudo: required
 language: java
 jdk:
   - openjdk8
+services:
+  - docker
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+after_success:
+-docker login -u $DOCKER_USER -p $DOCKER_PASS
+-docker build -f Dockerfile -t hcm-service:$SHA .
+-docker tag hcm-service:$SHA jbuilder1993/hcm-service:$SHA
+-docker push jbuilder1993/hcm-service:$SHA
+-docker build -f Dockerfile -t hcm-service .
+-docker tag hcm-service jbuilder1993/hcm-service
+-docker push jbuilder1993/hcm-service
+
