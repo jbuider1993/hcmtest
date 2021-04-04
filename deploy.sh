@@ -5,5 +5,4 @@ docker build -f Dockerfile -t hcm-service .
 docker tag hcm-service jbuilder1993/hcm-service
 docker push jbuilder1993/hcm-service
 
-kubectl apply -f k8s
-kubectl set image deployment/users-deployment users=jbuilder1993/hcm-service:$SHA
+
