@@ -28,7 +28,3 @@ after_success:
   - docker push jbuilder1993/hcm-service
   - kubectl apply -f k8s
   - kubectl set image deployment/users-deployment users=jbuilder1993/hcm-service:$SHA
-deploy:
-  - provider: script
-    on:
-      branche: main
