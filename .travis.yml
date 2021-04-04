@@ -14,3 +14,6 @@ after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - openssl aes-256-cbc -K $encrypted_177f44202b14_key -iv $encrypted_177f44202b14_iv -in googlegcpaccount.json.enc -out googlegcpaccount.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file googlegcpaccount.json
+  - gcloud config set project abstract-dragon-284619
