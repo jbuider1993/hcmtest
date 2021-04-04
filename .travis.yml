@@ -20,5 +20,7 @@ after_success:
   - gcloud config set compute/zone us-central1-a
   - gcloud container clusters get-credentials cluster-1
 deploy:
-  provider: script
-  script: bash ./deploy.sh
+  - provider: script
+    script: bash ./deploy.sh
+    on:
+      branches: main
