@@ -19,8 +19,16 @@ after_success:
   - gcloud config set project abstract-dragon-284619
   - gcloud config set compute/zone us-central1-a
   - gcloud container clusters get-credentials cluster-1
+  
+  - docker build -f Dockerfile -t hcm-service:$SHA .
+  - docker tag hcm-service:$SHA jbuilder1993/hcm-service:$SHA
+  - docker push jbuilder1993/hcm-service:$SHA
+  - docker build -f Dockerfile -t hcm-service .
+  - docker tag hcm-service jbuilder1993/hcm-service
+  - docker push jbuilder1993/hcm-service
+  - kubectl apply -f k8s
+  - kubectl set image deployment/users-deployment users=jbuilder1993/hcm-service:$SHA
 deploy:
   - provider: script
-    script: bash ./deploy.sh
     on:
       branche: main
