@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: user-service
+  template:
+    metadata:
+      labels:
+        component: user-service
+    spec:
+      containers:
+        - name: users
+          image: jbuilder1993/hcm-service:1.0
+          ports:
+            - containerPort: 9888

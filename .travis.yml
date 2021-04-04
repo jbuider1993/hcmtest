@@ -10,17 +10,19 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 script:
 - mvn clean install
+before_install:
+  - openssl aes-256-cbc -K $encrypted_177f44202b14_key -iv $encrypted_177f44202b14_iv -in googlegcpaccount.json.enc -out googlegcpaccount.json -d
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
 after_success:
-- docker login -u $DOCKER_USER -p $DOCKER_PASS
-- docker build -f Dockerfile -t hcm-service:$SHA .
-- docker tag hcm-service:$SHA jbuilder1993/hcm-service:$SHA
-- docker push jbuilder1993/hcm-service:$SHA
-- docker build -f Dockerfile -t hcm-service .
-- docker tag hcm-service jbuilder1993/hcm-service
-- docker push jbuilder1993/hcm-service
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file googlegcpaccount.json
+  - gcloud config set project abstract-dragon-284619
+  - gcloud config set compute/zone us-central1-a
+  - gcloud container clusters get-credentials cluster-1
 deploy:
-  provider: heroku
-  api_key: $HEROKU_API_KEY
-  app: app-hcmtest
-  on: main
+  provider: script
+    script: bash ./deploy.sh
+  on:
+    branch: master
 

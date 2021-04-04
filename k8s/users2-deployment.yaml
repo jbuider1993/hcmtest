@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: user2-service
+  template:
+    metadata:
+      labels:
+        component: user2-service
+    spec:
+      containers:
+        - name: users2
+          image: jbuilder1993/hcm-service:2.0
+          ports:
+            - containerPort: 8080
