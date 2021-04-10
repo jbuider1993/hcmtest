@@ -25,7 +25,7 @@ spec:
         component: mysql
     spec:
       containers:
-      - image: mysql:5.6
+      - image: mysql
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
@@ -41,7 +41,9 @@ spec:
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+          mountPath: /var/lib/mysql1
+        - name: initdb
+          mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
@@ -57,8 +59,8 @@ metadata:
 data:
   initdb.sql: |
     use workpower;
-    CREATE TABLE workpower.USERS (ID INT PRIMARY KEY, NAME VARCHAR(45), EMAILID VARCHAR(255));
-    INSERT INTO workpower.USERS (ID, NAME, EMAILID) VALUES (1, 'Jie Liu','jbuilder1993@gmail.com');
-    INSERT INTO workpower.USERS (ID, NAME, EMAILID) VALUES (2, 'Xiao Ying Li','mike_daniel@yahoo.co.in');
-    INSERT INTO workpower.USERS (ID, NAME, EMAILID) VALUES (3, 'David Lawrance','david_law@gmail.com');
-    INSERT INTO workpower.USERS (ID, NAME, EMAILID) VALUES (4, 'Cjang yu Liu','david_law@gmail.com');
+    CREATE TABLE USERS (ID INT PRIMARY KEY, NAME VARCHAR(45), EMAILID VARCHAR(255));
+    INSERT INTO USERS (ID, NAME, EMAILID) VALUES (1, 'Jie Liu','jbuilder1993@gmail.com');
+    INSERT INTO USERS (ID, NAME, EMAILID) VALUES (2, 'Xiao Ying Li','mike_daniel@yahoo.co.in');
+    INSERT INTO USERS (ID, NAME, EMAILID) VALUES (3, 'David Lawrance','david_law@gmail.com');
+    INSERT INTO USERS (ID, NAME, EMAILID) VALUES (4, 'Cjang yu Liu','david_law@gmail.com');
