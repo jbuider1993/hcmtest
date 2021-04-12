@@ -8,7 +8,6 @@ gcloud auth activate-service-account --key-file googlegcpaccount.json
 gcloud config set project abstract-dragon-284619
 gcloud config set compute/zone us-central1-c
 gcloud container clusters get-credentials cluster-1
-
 kubectl apply -f k8s
 kubectl set image deployment/users-deployment users=jbuilder1993/hcm-service:$SHA
 
