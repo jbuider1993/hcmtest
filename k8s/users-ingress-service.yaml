@@ -15,4 +15,8 @@ spec:
           - path: /user
             backend:
               serviceName: user2-ip-service
-              servicePort: 8080             
+              servicePort: 8080
+          - path: /oauth
+            backend:
+              serviceName: oauth-service
+              servicePort: 5000                        

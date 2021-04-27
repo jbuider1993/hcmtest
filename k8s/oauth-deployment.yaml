@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: oauth-service
+  template:
+    metadata:
+      labels:
+        component: oauth-service
+    spec:
+      containers:
+        - name: oauth
+          image: jbuilder1993/hcm-service:2.0
+          ports:
+            - containerPort: 5000
