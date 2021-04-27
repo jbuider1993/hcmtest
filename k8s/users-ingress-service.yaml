@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: user-ingress-service
   annotations:
-    kubernetes.io/ingress.class: nginx
+    dev.okteto.com/generate-host: "true"
 spec:
   rules:
     - http:
