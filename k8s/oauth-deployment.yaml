@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: oauth
-          image: jbuilder1993/oauth-service:3.0
+          image: jbuilder1993/oauth-service:4.0
           ports:
             - containerPort: 5000
