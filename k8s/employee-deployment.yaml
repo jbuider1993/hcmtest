@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: employee-service
+  template:
+    metadata:
+      labels:
+        component: employee-service
+    spec:
+      containers:
+        - name: employee
+          image: jbuilder1993/employee-service:5.0
+          ports:
+            - containerPort: 3000
