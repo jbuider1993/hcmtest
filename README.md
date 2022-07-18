@@ -29,7 +29,7 @@ docker push jbuilder1993/hcm-service
 - gcloud config set compute/zone us-central1-c
 - gcloud container clusters get-credentials cluster-1
 
-2) Install Ingress service
+2) Install Ingress service (minikube addons enable ingress)
   1) install helm
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
     chmod 700 get_helm.sh
