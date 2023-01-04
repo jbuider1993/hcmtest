@@ -63,6 +63,7 @@ https://app-hcmtest.herokuapp.com/users
 2/ cloud.okteto.com platform
 
 set the github path: that inlcude k8s folder:  jbuilder1993/hcmtest
+respostory: https://github.com/jbuider1993/hcmtest.git
 
 
 
